@@ -1,6 +1,10 @@
-<h1>Data Prodi</h1>
+@extends('main')
 
-<table border="1" cellpadding="10">
+@section('title', 'Program Studi')
+
+@section('content')
+
+<table class="table table-bordered table-hover">
     <tr>
         <th>No</th>
         <th>Nama Prodi</th>
@@ -20,3 +24,4 @@
     @endforeach
 
 </table>
+@endsection
