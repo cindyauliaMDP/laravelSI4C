@@ -355,6 +355,12 @@
                   <p>Program Studi</p>
                 </a>
               </li>
+                            <li class="nav-item">
+                <a href="{{  route('periode.index') }}" class="nav-link">
+                  <i class="nav-icon bi bi-map"></i>
+                  <p>Periode</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="../generate/theme.html" class="nav-link">
                   <i class="nav-icon bi bi-palette"></i>
