@@ -7,13 +7,13 @@ use App\Http\Controllers\ProdiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fakultas.create');
 });
 
-Route:: resource('fakultas', FakultasController::class);
+Route:: resource('/fakultas', FakultasController::class);
 
-Route:: resource('periode', PeriodeController::class);
+Route:: resource('/periode', PeriodeController::class);
 
-Route:: resource('berita', BeritaController::class);
+Route:: resource('/berita', BeritaController::class);
 
 Route::resource('/prodi', ProdiController::class);
