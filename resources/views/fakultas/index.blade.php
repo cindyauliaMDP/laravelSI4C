@@ -24,7 +24,7 @@
                 <td>{{ $item->nama }}</td>
                 <td>{{ $item->singkatan }}</td>
                 <td>{{ $item->dekan }}</td>
-                <td>
+                <td class=d-flex d-inline gap-2>
                     <a href="{{ route('fakultas.edit', $item->id) }}" class="btn btn-warning btn-rounded">Edit</a>
                     <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
                         @csrf

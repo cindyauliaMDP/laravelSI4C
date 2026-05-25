@@ -317,6 +317,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('mahasiswa.index') }}" class="nav-link">
+                                <i class="nav-icon bi bi-people"></i>
+                                <p>Mahasiswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('periode.index') }}" class="nav-link">
                                 <i class="nav-icon bi bi-map"></i>
                                 <p>Periode</p>

@@ -26,7 +26,7 @@ class PeriodeController extends Controller
     {
         return view('periode.create');
     }
-    }
+    
 
     /**
      * Store a newly created resource in storage.

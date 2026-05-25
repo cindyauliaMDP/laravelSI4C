@@ -72,7 +72,18 @@ class FakultasController extends Controller
      */
     public function update(Request $request, Fakultas $fakultas)
     {
-        //
+        // dd($fakultas);
+        //validasi data
+        $input = $request->validate([
+            'nama' =>'required|unique:fakultas, nama,' .
+            $fakultas->id, //validasi nama fakultas harus unik di tabel fakultas kecuali data yang sedang di update
+            'singkatan'=>'required',
+            'dekan'=>'required'
+        ]);
+        //update data ke tabel fakultas
+        $fakultas->update($input);
+        //redirect ke halaman index fakultas
+        return redirect()->route('fakultas.index')->with('success', 'Data fakultas berhasil diupdate'); //redirect ke halaman index fakultas dengan pesan success
     }
 
     /**

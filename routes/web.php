@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('fakultas.create');
 });
 
-Route:: resource('/fakultas', FakultasController::class);
+Route:: resource('/fakultas', FakultasController::class)->parameters(['fakultas' => 'fakultas']);
 
 Route:: resource('/periode', PeriodeController::class);
 
