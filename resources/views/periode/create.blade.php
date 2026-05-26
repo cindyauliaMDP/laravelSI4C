@@ -1,33 +1,23 @@
 @extends('main')
+
 @section('title', 'Tambah Periode')
+
 @section('content')
     <form action="{{ route('periode.store') }}" method="post">
-        @csrf
         <div class="form-group">
-            <label for="nama_periode">Nama Periode</label>
-            <input type="text" name="nama_periode" class="form-control" value="{{ old('nama_periode') }}">
-            @error('nama_periode')
+            <label for="tahun_akademik">Tahun Akademik</label>
+            <input type="text" name="tahun_akademik" class="form-control" value="{{ old('tahun_akademik') }}">
+            @error('tahun_akademik')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="form-group">
-            <label for="tahun">Tahun</label>
-            <input type="number" name="tahun" class="form-control" value="{{ old('tahun') }}">
-            @error('tahun')
+            <label for="kode_smt">Kode Semester</label>
+            <input type="text" name="kode_smt" class="form-control" value="{{ old('kode_smt') }}">
+            @error('kode_smt')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
-            <label for="semester">Semester</label>
-            <select name="semester" class="form-control">
-                <option value="">Pilih Semester</option>
-                <option value="Ganjil" {{ old('semester') == 'Ganjil' ? 'selected' : '' }}>Ganjil</option>
-                <option value="Genap" {{ old('semester') == 'Genap' ? 'selected' : '' }}>Genap</option>
-            </select>
-            @error('semester')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
     </form>
 @endsection

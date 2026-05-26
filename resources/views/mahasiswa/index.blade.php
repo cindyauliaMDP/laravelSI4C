@@ -1,12 +1,15 @@
 @extends('main')
 
-@section('title')
-    <h1>Data Mahasiswa</h1>
-@endsection
+@section('title', 'Mahasiswa')
 
 @section('content')
-    <a href={{ route('mahasiswa.create') }} class="btn btn-primary mb-3">Tambah Mahasiswa</a>
-    <table class="table table-border table-hover" border="1" cellpadding="10" cellspacing="0">
+    <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary mb-3">Tambah Mahasiswa</a>
+    @session('success')
+        <div class="alert alert-success">
+            {{ $value }}
+        </div>
+    @endsession
+    <table class="table table-bordered table-hover">
         <tr>
             <th>NPM</th>
             <th>Nama</th>
@@ -14,6 +17,7 @@
             <th>Foto</th>
             <th>Aksi</th>
         </tr>
+
         @foreach ($mahasiswa as $key => $mhs)
             <tr>
                 <td>{{ $mhs->npm }}</td>
@@ -27,15 +31,15 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('mahasiswa.edit', $mhs->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <form action="{{ route('mahasiswa.destroy', $mhs->id) }}" method="POST" style="display: inline;">
+                    <form method="POST" action="{{ route('mahasiswa.destroy', $mhs->id) }}">
                         @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-rounded show_confirm" data-toggle="tooltip"
+                            title='Delete' data-nama='{{ $mhs->nama }}'>Hapus</button>
                     </form>
                 </td>
             </tr>
         @endforeach
+
     </table>
 @endsection
-

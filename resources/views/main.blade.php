@@ -205,8 +205,8 @@
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="{{ url('assets/img/user2-160x160.jpg') }}" class="user-image rounded-circle shadow"
-                                alt="User Image" />
+                            <img src="{{ url('assets/img/user2-160x160.jpg') }}"
+                                class="user-image rounded-circle shadow" alt="User Image" />
                             <span class="d-none d-md-inline">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
@@ -305,27 +305,27 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('periode.index') }}" class="nav-link">
+                                <i class="nav-icon bi bi-calendar"></i>
+                                <p>Periode</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('fakultas.index') }}" class="nav-link">
                                 <i class="nav-icon bi bi-bank"></i>
                                 <p>Fakultas</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('prodi.index') }}" class="nav-link">
+                            <a href="{{ url('prodi') }}" class="nav-link">
                                 <i class="nav-icon bi bi-map"></i>
                                 <p>Program Studi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('mahasiswa.index') }}" class="nav-link">
+                            <a href="{{ url('mahasiswa') }}" class="nav-link">
                                 <i class="nav-icon bi bi-people"></i>
                                 <p>Mahasiswa</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('periode.index') }}" class="nav-link">
-                                <i class="nav-icon bi bi-map"></i>
-                                <p>Periode</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -749,7 +749,9 @@
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            @yield('title')
+                            <h3 class="mb-0">
+                                @yield('title')
+                            </h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
@@ -787,8 +789,10 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="card-body">Start creating your amazing application!</div>
-                                @yield('content')
+                                <div class="card-body">
+                                    @yield('content')
+                                </div>
+                                <!-- /.card-body -->
                                 <div class="card-footer">Footer</div>
                                 <!-- /.card-footer-->
                             </div>
@@ -827,7 +831,7 @@
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
-    <script src="../js/adminlte.js"></script>
+    <script src="{{ url('js/adminlte.js') }}"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
         const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
@@ -859,17 +863,17 @@
     </script>
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
-    {{-- {{ jQuery }} --}}
+
+    {{-- jQuery --}}
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"
         integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
-
-    {{-- {{ SweetAlert }} --}}
+    {{-- sweet alert --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script type="text/javascript">
         $('.show_confirm').click(function(event) {
-            var form = $(this).closest("form");
-            var nama = $(this).data("nama");
-            event.preventDefault();
+            var form = $(this).closest("form"); // Ambil form 
+            var nama = $(this).data("nama"); // Ambil data nama dari atribut data-nama dari index.blade.php
+            event.preventDefault(); // Hentikan aksi default tombol submit
             swal({
                     title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
                     text: "If you delete this, it will be gone forever.",
@@ -877,17 +881,14 @@
                     buttons: true,
                     dangerMode: true,
                 })
-                .then((willDelete) => {
-                    if (willDelete) {
+                .then((willDelete) => { // Setelah pengguna memilih opsi
+                    if (willDelete) { // Jika pengguna memilih "OK", maka form akan disubmit
                         form.submit();
                     }
                 });
         });
     </script>
 
-</body>
-
-</html>
 </body>
 <!--end::Body-->
 

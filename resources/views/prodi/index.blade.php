@@ -1,35 +1,41 @@
 @extends('main')
 
-@section('title')
-    <h1>Data Prodi</h1>
-@endsection
+@section('title', 'Program Studi')
 
 @section('content')
-    <a href={{ route('prodi.create') }} class="btn btn-primary mb-3">Tambah Prodi</a>
-    <table class="table table-border table-hover" border="1" cellpadding="10" cellspacing="0">
+    <a href="{{ route('prodi.create') }}" class="btn btn-primary mb-3">Tambah Program Studi</a>
+    @session('success')
+        <div class="alert alert-success">
+            {{ $value }}
+        </div>
+    @endsession
+    <table class="table table-bordered table-hover">
         <tr>
             <th>No</th>
             <th>Nama Prodi</th>
             <th>Singkatan</th>
             <th>Kaprodi</th>
-            <th>Nama Fakultas</th>
-            <th>Kode Fakultas</th>
-            <th>Dekan Fakultas</th>
+            <th>Fakultas</th>
+            <th>Aksi</th>
         </tr>
-        @foreach ($prodis as $p)
+
+        @foreach ($prodis as $key => $prodi)
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $p->nama_prodi }}</td>
-                <td>{{ $p->singkatan }}</td>
-                <td>{{ $p->kaprodi }}</td>
-                <td>{{ $p->fakultas->nama_fakultas }}</td>
-                <td>{{ $p->fakultas->kode_fakultas }}</td>
-                <td>{{ $p->fakultas->dekan_fakultas }}</td>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $prodi->nama_prodi }}</td>
+                <td>{{ $prodi->singkatan }}</td>
+                <td>{{ $prodi->kaprodi }}</td>
+                <td>{{ $prodi->fakultas->nama_fakultas ?? '-' }}</td>
+                <td>
+                    <form method="POST" action="{{ route('prodi.destroy', $prodi->id) }}">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-rounded show_confirm" data-toggle="tooltip"
+                            title='Delete' data-nama='{{ $prodi->nama_prodi }}'>Hapus</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
-    </table>
-@endsection
 
-@section('footer')
-    <p>RyHar </p>
+    </table>
 @endsection

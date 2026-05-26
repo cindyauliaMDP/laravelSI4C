@@ -11,28 +11,28 @@
     @endsession
     <table class="table table-bordered table-hover">
         <tr>
-            <th>No</th>
             <th>Nama Fakultas</th>
             <th>Singkatan</th>
             <th>Dekan</th>
             <th>Aksi</th>
         </tr>
 
-        @foreach ($fakultas as $key => $item)
+        @foreach ($result as $item)
             <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->nama }}</td>
+                <td>{{ $item->nama_fakultas }}</td>
                 <td>{{ $item->singkatan }}</td>
                 <td>{{ $item->dekan }}</td>
-                <td class=d-flex d-inline gap-2>
+                <td>
                     <a href="{{ route('fakultas.edit', $item->id) }}" class="btn btn-warning btn-rounded">Edit</a>
-                    <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}">
+                    <form method="POST" action="{{ route('fakultas.destroy', $item->id) }}" class="d-inline">
                         @csrf
                         <input name="_method" type="hidden" value="DELETE">
                         <button type="submit" class="btn btn-danger btn-rounded show_confirm" data-toggle="tooltip"
-                            title='Delete' data-nama='{{ $item->nama }}'>Hapus</button>
+                            title='Delete' data-nama='{{ $item->nama_fakultas }}'>Hapus</button>
                     </form>
                 </td>
             </tr>
         @endforeach
-    @endsection
+
+    </table>
+@endsection

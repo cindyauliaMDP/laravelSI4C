@@ -1,46 +1,42 @@
 @extends('main')
 
-@section('title')
-    <h1>Form Tambah Data Prodi</h1>
-@endsection
+@section('title', 'Tambah Program Studi')
 
 @section('content')
-    <a href="{{ route('prodi.index') }}" class="btn btn-secondary mb-3">Kembali</a>
-    <form action="{{ route('prodi.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="nama_prodi" class="form-label">Nama Prodi</label>
-            <input type="text" class="form-control" id="nama_prodi" name="nama_prodi" value="{{ old('nama_prodi') }}" required>
+    <form action="{{ route('prodi.store') }}" method="post">
+        <div class="form-group">
+            <label for="nama_prodi">Nama Program Studi</label>
+            <input type="text" name="nama_prodi" class="form-control" value="{{ old('nama_prodi') }}">
             @error('nama_prodi')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="singkatan" class="form-label">Singkatan</label>
-            <input type="text" class="form-control" id="singkatan" name="singkatan" value="{{ old('singkatan') }}" maxlength="2" required>
+        <div class="form-group">
+            <label for="singkatan">Singkatan</label>
+            <input type="text" name="singkatan" class="form-control" value="{{ old('singkatan') }}">
             @error('singkatan')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="kaprodi" class="form-label">Nama Kaprodi</label>
-            <input type="text" class="form-control" id="kaprodi" name="kaprodi" value="{{ old('kaprodi') }}" maxlength="30" required>
+        <div class="form-group">
+            <label for="kaprodi">Nama Kaprodi</label>
+            <input type="text" name="kaprodi" class="form-control" value="{{ old('kaprodi') }}">
             @error('kaprodi')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="fakultas_id" class="form-label">Fakultas</label>
-            <select class="form-select" id="fakultas_id" name="fakultas_id" required>
-                <option value="" disabled selected>Pilih Fakultas</option>
-                @foreach ($fakultas as $fak)
-                    <option value="{{ $fak->id }}" {{ old('fakultas_id') == $fak->id ? 'selected' : '' }}>{{ $fak->nama_fakultas }}</option>
+        <div class="form-group">
+            <label for="fakultas_id">Fakultas</label>
+            <select name="fakultas_id" class="form-control">
+                <option value="">-- Pilih Fakultas --</option>
+                @foreach($fakultas as $f)
+                    <option value="{{ $f->id }}" {{ old('fakultas_id') == $f->id ? 'selected' : '' }}>{{ $f->nama_fakultas }}</option>
                 @endforeach
             </select>
             @error('fakultas_id')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
     </form>
 @endsection

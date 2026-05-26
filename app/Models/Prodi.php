@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Prodi extends Model
 {
     protected $fillable = [
-    'nama_prodi',
-    'singkatan',
-    'kaprodi',
-    'fakultas_id'
+        'nama_prodi',
+        'singkatan',
+        'kaprodi',
+        'fakultas_id'
     ];
 
     public function fakultas()
